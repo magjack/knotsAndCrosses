@@ -1,4 +1,5 @@
-import { gameReducer, isWinner } from './game';
+import { isWinner } from './game';
+import gameReducer from './game';
 
 describe('Testing game reducer', () => {
 
@@ -8,8 +9,8 @@ describe('Testing game reducer', () => {
         
         const newState = gameReducer(prevState, {type: 'TAKE_TURN',x:1,y:2,value:'X'})
 
-        expectedState = {gameState:[[null,'X',null],[null,'O','X'],[null,null,null]]}
-        expect(newState).toEqual({expectedState});
+        const expectedState = {gameState:[[null,'X',null],[null,'O','X'],[null,null,null]]}
+        expect(newState).toEqual(expectedState);
         
     });
 
@@ -19,8 +20,8 @@ describe('Testing game reducer', () => {
         
         const newState = gameReducer(prevState, {type: 'TAKE_TURN',x:1,y:2,value:'X'})
 
-        expectedState = {player:'O'}
-        expect(newState).toEqual({expectedState});
+        const expectedState = {player:'O'}
+        expect(newState).toEqual(expectedState);
         
     });
 
@@ -29,8 +30,8 @@ describe('Testing game reducer', () => {
         
         const newState = gameReducer(prevState, {type: 'TAKE_TURN',x:0,y:0,value:'O'})
 
-        expectedState = {gameState:[['O','X','O'],['O','X','O'],['X','O','X']], gameStatus:'stallmate'};
-        expect(newState).toEqual({expectedState});
+        const expectedState = {gameState:[['O','X','O'],['O','X','O'],['X','O','X']], gameStatus:'stallmate'};
+        expect(newState).toEqual(expectedState);
         
     });
 
@@ -39,8 +40,8 @@ describe('Testing game reducer', () => {
         
         const newState = gameReducer(prevState, {type: 'TAKE_TURN',x:0,y:0,value:'X'})
 
-        expectedState = {gameState:[['X','X','X'],['O',null,'O'],[null,'O','X']], gameStatus:'X winner'};
-        expect(newState).toEqual({expectedState});
+        const expectedState = {gameState:[['X','X','X'],['O',null,'O'],[null,'O','X']], gameStatus:'X winner'};
+        expect(newState).toEqual(expectedState);
         
     });
     it('Resets the game after resubmit action', () => {
@@ -49,8 +50,8 @@ describe('Testing game reducer', () => {
 
         const newState = gameReducer(prevState, {type: 'TAKE_TURN',x:0,y:0,value:'X'})
 
-        expectedState = {gameState:[['X','X','X'],['O',null,'O'],[null,'O','X']], gameStatus:'X winner'};
-        expect(newState).toEqual({expectedState});
+        const expectedState = {gameState:[['X','X','X'],['O',null,'O'],[null,'O','X']], gameStatus:'X winner'};
+        expect(newState).toEqual(expectedState);
         
     });    
 
