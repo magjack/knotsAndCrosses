@@ -33,8 +33,8 @@ export const isWinner = (gameState) => {
             return row[diagonal[index]]
         })
 
-        if(checkSame(diagonals)){
-            return diagoanlValues[0]
+        if(checkSame(diagoanlValues)){
+            winner = diagoanlValues[0];
         }
     })
     return winner
