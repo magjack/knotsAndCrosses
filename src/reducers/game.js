@@ -6,23 +6,24 @@ const initialState = {
 
 }
 
-const checkSame = (row) => {
-    return _.uniq(row).length === 1
+const checkSame = (array) => {
+    return _.uniq(array).length === 1
 }
 
 const diagonals = [[0, 1, 2], [2, 1, 0]]
 
 export const isWinner = (gameState) => {
+    let winner = null;
 
     gameState.map((row) => {
         if (checkSame(row)) {
-            return row[0];
+            winner = row[0];
         }
     })
 
     _.transpose(gameState).map((row) => {
         if (checkSame(row)) {
-            return row[0];
+            winner = row[0];
         }
     });
 
@@ -36,7 +37,7 @@ export const isWinner = (gameState) => {
             return diagoanlValues[0]
         }
     })
-    return null
+    return winner
 }
 
 export default (state = initialState, action) => {
