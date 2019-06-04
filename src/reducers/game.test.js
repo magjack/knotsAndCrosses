@@ -72,7 +72,7 @@ describe('Testing the isThereAWinner function', () => {
         
     });
 
-    it('Check for vertical win', () => {
+    it('Check for diagonal win', () => {
         const gameState = [['X','O','X'],['X','X','O'],[null,'O','X']]
 
         expect(isWinner(gameState)).toEqual('X');
