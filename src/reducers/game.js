@@ -4,6 +4,12 @@ const initialState = {
 
 }
 
+export const isWinner = (state) =>{
+    const winner = null
+
+    return winner
+}
+
 export default (state = initialState, action) => {
     switch (action.type) {
 
