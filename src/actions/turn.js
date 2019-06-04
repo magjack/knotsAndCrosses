@@ -1,4 +1,6 @@
-export const takeTurn = (payload) => ({
-    type: type,
-    payload
+export const takeTurn = (x,y,value) => ({
+    type: 'TAKE_TURN',
+    x,
+    y,
+    value
 })

@@ -8,21 +8,27 @@ function mapStateToProps(state) {
 }
 
 export const addBox= (box) => {
-    return <span className = "box" >This is a box </span>
+    return <span className = "box" > {box.value}</span>
 }
 
 export const addRow= (row) => {
-    return <div className = "row" > </div>
+    return <div className = "row" >{row.map((box) => {
+        return addBox(box)
+    })} </div>
 }
 
+const array =[[{value:'O'},{value:'X'},{value:'O'}],[{value:'X'},{value:'X'},{value:'X'}],[{value:'X'},{value:'X'},{value:'X'}]]
 
-export class boxes extends Component {
-
-
+export class Boxes extends Component {
+    
+    
     render() {
         return (
-            <div>
-
+            <div className="game-grid">
+                {array.map((row) =>{
+                    return addRow(row)
+                })}
+            <div>Player 1</div>
             </div>
         );
     }
@@ -32,4 +38,4 @@ export class boxes extends Component {
 
 export default connect(
     mapStateToProps,
-)(boxes);
+)(Boxes);
