@@ -4,3 +4,7 @@ export const takeTurn = (x,y,value) => ({
     y,
     value
 })
+
+export const rest = () => ({
+    type: 'RESET'
+})

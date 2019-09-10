@@ -41,8 +41,9 @@ describe('Testing game reducer', () => {
         
         const newState = gameReducer(prevState, {type: 'TAKE_TURN',x:0,y:0,value:'X'})
 
-        const expectedState = {gameState:[['X','X','X'],['O',null,'O'],[null,'O','X']], isGamerOver:'true',winner:'X'};
+        const expectedState = {gameState:[['X','X','X'],['O',null,'O'],[null,'O','X']], isGamerOver:true ,winner:'X'};
         expect(newState.winner).toEqual(expectedState.winner);
+        expect(newState.isGamerOver).toEqual(expectedState.isGamerOver);
         
     });
 

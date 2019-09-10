@@ -1,34 +1,44 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { takeTurn, rest } from '../../actions/turn'
 
 function mapStateToProps(state) {
     return {
+        game: state.gameReducer
 
     };
 }
 
-export const addBox= (box) => {
-    return <div className = "box" > {box.value}</div>
-}
+function mapDispatchToProps(dispatch) {
+    return {
 
-export const addRow= (row) => {
-    return <div className = "row" >{row.map((box) => {
-        return addBox(box)
-    })} </div>
-}
+        takeTurn: (x, y, value) => {
+            return() => dispatch(takeTurn(x, y, value))
+        },
 
-const array =[[{value:'O'},{value:'X'},{value:' '}],[{value:'X'},{value:'X'},{value:'X'}],[{value:'X'},{value:'X'},{value:'X'}]]
+        reset: () => {
+            dispatch(rest());
+        }
+    }
+
+};
+
 
 export class Boxes extends Component {
-    
-    
+
     render() {
         return (
             <div className="game-grid">
-                {array.map((row) =>{
-                    return addRow(row)
+                {this.props.game.gameState.map((row, rowIndex) => {
+                    return <div className="row" >{row.map((value, index) => {
+                        return <div className="box" onClick={ !value ? this.props.takeTurn(rowIndex, index, this.props.game.isPlayerOne ? 'X' : 'O') : null} > {value}</div>
+                    })} </div>
+
                 })}
-            <div className="player">Player 1</div>
+                {this.props.game.isGamerOver ?
+                    <div className="player">{this.props.game.winner ? `${this.props.game.winner} Wins ` : 'No Winner' }
+                     <div><button onClick={this.props.reset}> Reset </button></div> </div>
+                    : <div className="player">Player {this.props.game.isPlayerOne ? 'X' : 'O'} turn</div>}
             </div>
         );
     }
@@ -37,5 +47,5 @@ export class Boxes extends Component {
 
 
 export default connect(
-    mapStateToProps,
+    mapStateToProps, mapDispatchToProps
 )(Boxes);
