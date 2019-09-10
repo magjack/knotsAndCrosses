@@ -2,7 +2,11 @@ import _ from "lodash-transpose";
 
 const initialState = {
 
-    isPlayerOne: 1
+    isPlayerOne: true,
+    isGamerOver:false,
+    winner: null,
+    gameState: [['','',''],['','',''],['','','']],
+    turn: 0
 
 }
 
@@ -44,7 +48,10 @@ export default (state = initialState, action) => {
     switch (action.type) {
 
         case 'TAKE_TURN':
-            return { ...state, isPlayerOne: !state.isPlayerOne }
+            const newGameState = state.gameState
+            newGameState[action.x][action.y] = action.value
+            
+            return { ...state, isPlayerOne: !state.isPlayerOne, gameState:newGameState,isGamerOver: state.turn < 9, turn: state.turn + 1, winner: isWinner(state.gameState) }
 
         default:
             return state

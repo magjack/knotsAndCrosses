@@ -8,7 +8,7 @@ function mapStateToProps(state) {
 }
 
 export const addBox= (box) => {
-    return <span className = "box" > {box.value}</span>
+    return <div className = "box" > {box.value}</div>
 }
 
 export const addRow= (row) => {
@@ -17,7 +17,7 @@ export const addRow= (row) => {
     })} </div>
 }
 
-const array =[[{value:'O'},{value:'X'},{value:'O'}],[{value:'X'},{value:'X'},{value:'X'}],[{value:'X'},{value:'X'},{value:'X'}]]
+const array =[[{value:'O'},{value:'X'},{value:' '}],[{value:'X'},{value:'X'},{value:'X'}],[{value:'X'},{value:'X'},{value:'X'}]]
 
 export class Boxes extends Component {
     
@@ -28,7 +28,7 @@ export class Boxes extends Component {
                 {array.map((row) =>{
                     return addRow(row)
                 })}
-            <div>Player 1</div>
+            <div className="player">Player 1</div>
             </div>
         );
     }
