@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { takeTurn, rest } from '../../actions/turn'
+import { takeTurn } from '../../actions/turn'
 
 function mapStateToProps(state) {
     return {
@@ -14,10 +14,6 @@ function mapDispatchToProps(dispatch) {
 
         takeTurn: (x, y, value) => {
             return() => dispatch(takeTurn(x, y, value))
-        },
-
-        reset: () => {
-            dispatch(rest());
         }
     }
 
@@ -36,8 +32,7 @@ export class Boxes extends Component {
 
                 })}
                 {this.props.game.isGamerOver ?
-                    <div className="player">{this.props.game.winner ? `${this.props.game.winner} Wins ` : 'No Winner' }
-                     <div><button onClick={this.props.reset}> Reset </button></div> </div>
+                    <div className="player">{this.props.game.winner ? `${this.props.game.winner} Wins ` : 'No Winner' } </div>
                     : <div className="player">Player {this.props.game.isPlayerOne ? 'X' : 'O'} turn</div>}
             </div>
         );

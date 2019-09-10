@@ -54,7 +54,8 @@ export default (state = initialState, action) => {
             return { ...state, isPlayerOne: !state.isPlayerOne, gameState:newGameState, isGamerOver: state.turn+1 >=9 || Boolean(isWinner(state.gameState)), turn: state.turn + 1, winner: isWinner(state.gameState) }
 
         case 'RESET':
-            return {...initialState}
+            return initialState
+
         default:
             return state
     }
